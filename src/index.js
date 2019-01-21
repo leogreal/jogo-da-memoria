@@ -1,15 +1,23 @@
 const $root = document.querySelector("#root");
 const $memoryCard = document.createElement("article");
-const $icon = `
-  <img
-    class='icon'
-    src='img/icon-collabcode.png'
-    alt='Gueio mascode da CollabCode'
-  />
-`;
+const $upsetMemoryCard = document.createElement("article");
 
 $memoryCard.classList.add("memory-card");
+$upsetMemoryCard.classList.add("memory-card");
+$upsetMemoryCard.classList.add("-upset");
 
+$root.insertBefore($upsetMemoryCard, null);
 $root.insertBefore($memoryCard, null);
 
-$memoryCard.insertAdjacentHTML("afterbegin", $icon);
+$upsetMemoryCard.insertAdjacentHTML("afterbegin", icon("img/icon-js.png", "JavaScript"));
+$memoryCard.insertAdjacentHTML("afterbegin", icon("img/icon-collabcode.png", "Gueio mascode da CollabCode"));
+
+function icon(mySrc, myAlt) {
+  return `
+    <img
+      class='icon'
+      src='${mySrc}'
+      alt='${myAlt}'
+    />
+  `;
+}
