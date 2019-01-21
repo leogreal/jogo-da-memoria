@@ -1,6 +1,12 @@
 const $root = document.querySelector("#root");
 const $memoryCard = document.createElement("article");
-const $icon = "<img class='icon' src='img/icon-collabcode.png' alt='Gueio mascode da CollabCode' />";
+const $icon = `
+  <img
+    class='icon'
+    src='img/icon-collabcode.png'
+    alt='Gueio mascode da CollabCode'
+  />
+`;
 
 $memoryCard.classList.add("memory-card");
 
