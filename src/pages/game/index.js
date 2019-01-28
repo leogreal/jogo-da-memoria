@@ -4,4 +4,5 @@ const $cardsWrapper = createCardsWrapper();
 const $memoryCard = createMemoryCard();
 const $memoryCardFront = createMemoryCardFront();
 
-$root.insertAdjacentHTML("beforeend", $cardsWrapper);
+$cardsWrapper.insertAdjacentHTML("beforeend", $memoryCard);
+$root.insertAdjacentElement("beforeend", $cardsWrapper);
