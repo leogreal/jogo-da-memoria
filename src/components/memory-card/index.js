@@ -1,3 +1,5 @@
+const $wrapCards = document.querySelector(".wrap-cards");
+
 function createMemoryCard() {
   const $memoryCard = document.createElement("article");
 
