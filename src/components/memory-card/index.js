@@ -1,7 +1,7 @@
 const $wrapCards = document.querySelector(".wrap-cards");
 
 function createMemoryCard() {
-  const $memoryCard = `
+  return `
     <article class="memory-card">
       <img
         class='icon'
@@ -13,7 +13,7 @@ function createMemoryCard() {
 }
 
 function createMemoryCardFront() {
-  const $memoryCardFront = `
+  return `
     <article class="memory-card -front">  
       <img
         class='icon'
