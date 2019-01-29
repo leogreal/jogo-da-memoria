@@ -1,7 +1,6 @@
 const $wrapCards = document.querySelector(".wrap-cards");
 
-function createMemoryCard() {
-  return `
+const createMemoryCard = () => `
     <article class="memory-card">
       <img
         class='icon'
@@ -11,21 +10,5 @@ function createMemoryCard() {
       />
     </article>
   `;
-}
 
-function createMemoryCardFront() {
-  return `
-    <article class="memory-card -front">  
-      <img
-        class='icon'
-        src='img/icon-js.png'
-        alt='Icone da linguagem'
-        onClick="handleClick()"
-      />
-    </article>
-  `;
-}
-
-function handleClick() {
-  console.log("foi");
-}
+const handleClick = () => console.log("foi");
