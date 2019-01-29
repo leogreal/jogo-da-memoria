@@ -1,11 +1,12 @@
-const $wrapCards = document.querySelector(".wrap-cards");
-
-const createMemoryCard = () => `
-    <article class="memory-card">
+const createMemoryCard = (
+  src='img/icon-collabcode.png',
+  alt='Gueio mascode da CollabCode',
+  extraClass='') => `
+    <article class="memory-card ${extraClass}">
       <img
         class='icon'
-        src='img/icon-collabcode.png'
-        alt='Gueio mascode da CollabCode'
+        src='${src}'
+        alt='${alt}'
         onClick="handleClick()"
       />
     </article>
