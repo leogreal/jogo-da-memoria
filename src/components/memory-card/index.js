@@ -5,7 +5,11 @@ const createMemoryCard = nameClass => `
       src='${
         nameClass === "-front" ? "img/icon-js.png" : "img/icon-collabcode.png"
       }'
-      alt='Gueio mascode da CollabCode'
+      alt='${
+        nameClass === "-front"
+          ? "Icone de um livro de JavaScript"
+          : "Gueio mascode da CollabCode"
+      }'
       onClick="handleClick()"
     />
   </article>
