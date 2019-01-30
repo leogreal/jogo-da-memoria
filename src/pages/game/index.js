@@ -2,11 +2,7 @@ const $root = document.querySelector("#root");
 
 const $cardsWrapper = createCardsWrapper();
 const $memoryCard = createMemoryCard();
-const $memoryCardJS = createMemoryCard(
-  "-front",
-  "img/icon-js.png",
-  "JavaScript"
-);
+const $memoryCardJS = createMemoryCard("-front");
 
 $cardsWrapper.insertAdjacentHTML("beforeend", $memoryCard);
 $cardsWrapper.insertAdjacentHTML("beforeend", $memoryCard);
