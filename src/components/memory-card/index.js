@@ -1,7 +1,8 @@
 const createMemoryCard = (
-  src='img/icon-collabcode.png',
-  alt='Gueio mascode da CollabCode',
-  extraClass='') => `
+  src = "img/icon-collabcode.png",
+  alt = "Gueio mascode da CollabCode",
+  extraClass = ""
+) => `
     <article class="memory-card ${extraClass}">
       <img
         class='icon'
