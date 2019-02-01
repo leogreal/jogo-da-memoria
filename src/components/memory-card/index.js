@@ -1,12 +1,16 @@
-const createMemoryCard = attributes => `
-  <article class="memory-card ${attributes.className}">
+const createMemoryCard = card => {
+  const { className, src, alt } = card;
+
+  return `
+  <article class="memory-card ${className}">
     <img
       class='icon'
-      src='${attributes.src}'
-      alt='${attributes.alt}'
+      src='${src}'
+      alt='${alt}'
       onClick="handleClick()"
     />
   </article>
 `;
+};
 
 const handleClick = () => console.log("foi");
