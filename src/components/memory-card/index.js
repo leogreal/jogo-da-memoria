@@ -6,6 +6,12 @@ const memoryCard = () => {
     .memory-card {
       width: 155px;
       height: 155px;
+      position: relative;
+    }
+  
+    .memory-card .card {
+      width: 100%;
+      height: 100%;
       background-color: #f25a70;
       border-radius: 30px;
       display: flex;
@@ -14,13 +20,22 @@ const memoryCard = () => {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
       position: relative;
       cursor: pointer;
+      position: absolute;
     }
 
-    .memory-card.-front {
+    .memory-card.-active .card {
+      display: none;
+    }
+
+    .memory-card.-active .card.-front {
+      display: flex;
+    }
+
+    .memory-card .card.-front {
       background-color: #fff;
     }
 
-    .memory-card.-front::before {
+    .memory-card .card.-front::before {
       content: "";
       width: 95px;
       height: 95px;
@@ -29,12 +44,12 @@ const memoryCard = () => {
       position: absolute;
     }
 
-    .memory-card > .icon {
+    .memory-card .card > .icon {
       width: 100px;
       height: 100px;
     }
 
-    .memory-card.-front > .icon {
+    .memory-card .card.-front > .icon {
       position: absolute;
       transform: translateY(-12px);
     }
@@ -43,15 +58,25 @@ const memoryCard = () => {
   $head.insertBefore($style, null);
 
   return ({ className, src, alt }) => `
-    <article class="memory-card ${className}">
-      <img
-        class='icon'
-        src='${src}'
-        alt='${alt}'
-        onClick="handleClick()"
-      />
-    </article>
+    <div class="memory-card" onClick="handleClick(this)">
+      <article class="card -front">
+        <img
+          class='icon'
+          src='${src}'
+          alt='${alt}'
+        />
+      </article>
+      <article class="card">
+        <img
+          class='icon'
+          src='img/icon-collabcode.png'
+          alt='Gueio mascote da collabcode'
+        />
+      </article>
+    </div>
   `;
 };
 
-const handleClick = () => console.log("foi");
+const handleClick = $component => {
+  $component.classList.toggle("-active");
+};
