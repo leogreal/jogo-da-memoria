@@ -78,5 +78,19 @@ const memoryCard = () => {
 };
 
 const handleClick = $component => {
-  $component.classList.toggle("-active");
+  const $turnedAmount = document.querySelectorAll(".memory-card.-active")
+    .length;
+
+  if ($turnedAmount <= 1) {
+    $component.classList.toggle("-active");
+  }
+
+  if ($turnedAmount == 1) {
+    setTimeout(() => {
+      const $cards = document.querySelectorAll(".memory-card.-active");
+      $cards.forEach($card => {
+        $card.classList.remove("-active");
+      });
+    }, 2000);
+  }
 };
