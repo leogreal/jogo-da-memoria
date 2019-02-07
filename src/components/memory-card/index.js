@@ -23,11 +23,13 @@ const memoryCard = () => {
       position: absolute;
     }
 
-    .memory-card.-active .card {
+    .memory-card.-active .card,
+    .memory-card.-acerto_mizeravi .card {
       display: none;
     }
 
-    .memory-card.-active .card.-front {
+    .memory-card.-active .card.-front,
+    .memory-card.-acerto_mizeravi .card.-front {
       display: flex;
     }
 
@@ -83,16 +85,44 @@ const handleClick = $component => {
   }
 
   if (qtdActiveMemoryCard === 1) {
-    setTimeout(() => {
-      const $activeMemoryCards = document.querySelectorAll(
-        ".memory-card.-active"
-      );
-
-      $activeMemoryCards.forEach($memoryCard => {
-        $memoryCard.classList.remove("-active");
-      });
-
-      qtdActiveMemoryCard = 0;
-    }, 2000);
+    checkPair();
   }
+};
+
+const checkPair = () => {
+  const $activeCards = Array.from(
+    document.querySelectorAll(".memory-card.-active")
+  );
+
+  const unique = [
+    ...new Set(
+      $activeCards.map(card =>
+        card.querySelector(".-front .icon").getAttribute("src")
+      )
+    )
+  ];
+
+  if (unique.length == 1) {
+    console.log("Acertô Mizeravi!");
+    $activeCards.forEach(card => {
+      card.classList.add("-acerto_mizeravi");
+      card.classList.remove("-active");
+    });
+  } else {
+    turnCardsDown();
+  }
+};
+
+const turnCardsDown = () => {
+  setTimeout(() => {
+    const $activeMemoryCards = document.querySelectorAll(
+      ".memory-card.-active"
+    );
+
+    $activeMemoryCards.forEach($memoryCard => {
+      $memoryCard.classList.remove("-active");
+    });
+
+    qtdActiveMemoryCard = 0;
+  }, 2000);
 };
