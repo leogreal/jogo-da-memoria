@@ -79,6 +79,7 @@ const memoryCard = () => {
   `;
 };
 
+let score = 0;
 const handleClick = $component => {
   if (!$component.classList.contains("-active")) {
     if (qtdActiveMemoryCard < 2) {
@@ -105,7 +106,7 @@ const checkPair = () => {
   ];
 
   if (unique.length == 1) {
-    console.log("Acertô Mizeravi!");
+    score++;
     $activeCards.forEach(card => {
       card.classList.add("-acerto_mizeravi");
       card.classList.remove("-active");
