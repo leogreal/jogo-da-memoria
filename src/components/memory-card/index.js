@@ -102,8 +102,8 @@ const checkPair = () => {
   ];
 
   if (unique.length == 1) {
-    score++;
-    console.log(score);
+    store.score++;
+    console.log(store.score);
     $activeCards.forEach(card => {
       card.classList.add("-score");
       card.classList.remove("-active");
