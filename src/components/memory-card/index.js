@@ -24,12 +24,12 @@ const memoryCard = () => {
     }
 
     .memory-card.-active .card,
-    .memory-card.-acerto_mizeravi .card {
+    .memory-card.-score .card {
       display: none;
     }
 
     .memory-card.-active .card.-front,
-    .memory-card.-acerto_mizeravi .card.-front {
+    .memory-card.-score .card.-front {
       display: flex;
     }
 
@@ -108,7 +108,7 @@ const checkPair = () => {
   if (unique.length == 1) {
     score++;
     $activeCards.forEach(card => {
-      card.classList.add("-acerto_mizeravi");
+      card.classList.add("-score");
       card.classList.remove("-active");
     });
   } else {
