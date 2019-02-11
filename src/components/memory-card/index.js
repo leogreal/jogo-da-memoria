@@ -80,12 +80,14 @@ const memoryCard = () => {
 };
 
 const handleClick = $component => {
-  if (qtdActiveMemoryCard < 2) {
-    $component.classList.toggle("-active");
-  }
+  if (!$component.classList.contains("-active")) {
+    if (qtdActiveMemoryCard < 2) {
+      $component.classList.toggle("-active");
+    }
 
-  if (qtdActiveMemoryCard === 1) {
-    checkPair();
+    if (qtdActiveMemoryCard === 1) {
+      checkPair();
+    }
   }
 };
 
