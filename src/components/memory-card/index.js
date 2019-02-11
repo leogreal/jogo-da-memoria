@@ -84,13 +84,8 @@ const handleClick = $component => {
     return;
   }
 
-  if (qtdActiveMemoryCard < 2) {
-    $component.classList.add("-active");
-  }
-
-  if (qtdActiveMemoryCard === 1) {
-    checkPair();
-  }
+  activeMemoryCard($component);
+  checkSure();
 };
 
 const checkPair = () => {
@@ -108,6 +103,7 @@ const checkPair = () => {
 
   if (unique.length == 1) {
     score++;
+    console.log(score);
     $activeCards.forEach(card => {
       card.classList.add("-score");
       card.classList.remove("-active");
@@ -129,4 +125,16 @@ const turnCardsDown = () => {
 
     qtdActiveMemoryCard = 0;
   }, 2000);
+};
+
+const activeMemoryCard = $component => {
+  if (qtdActiveMemoryCard < 2) {
+    $component.classList.add("-active");
+  }
+};
+
+const checkSure = () => {
+  if (qtdActiveMemoryCard === 1) {
+    checkPair();
+  }
 };
