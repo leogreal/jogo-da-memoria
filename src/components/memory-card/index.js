@@ -115,18 +115,18 @@ const cardLogic = (function() {
         $memoryCard.classList.remove("-active");
       });
 
-      qtdActiveMemoryCard = 0;
+      store.qtdActiveMemoryCard = 0;
     }, 2000);
   };
 
   const activeMemoryCard = $component => {
-    if (qtdActiveMemoryCard < 2) {
+    if (store.qtdActiveMemoryCard < 2) {
       $component.classList.add("-active");
     }
   };
 
   const checkSure = () => {
-    if (qtdActiveMemoryCard === 1) {
+    if (store.qtdActiveMemoryCard === 1) {
       checkPair();
     }
   };
