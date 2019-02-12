@@ -59,8 +59,8 @@ const memoryCard = () => {
 
   $head.insertBefore($style, null);
 
-  return ({ className, src, alt }) => `
-    <div class="memory-card" onClick="handleClick(this)">
+  return ({ src, alt }) => `
+    <div class="memory-card" onClick="cardLogic.handleClick(this)">
       <article class="card -front">
         <img
           class='icon'
@@ -79,62 +79,66 @@ const memoryCard = () => {
   `;
 };
 
-const handleClick = $component => {
-  if ($component.classList.contains("-active")) {
-    return;
-  }
-
-  activeMemoryCard($component);
-  checkSure();
-};
-
-const checkPair = () => {
-  const $activeCards = Array.from(
-    document.querySelectorAll(".memory-card.-active")
-  );
-
-  const unique = [
-    ...new Set(
-      $activeCards.map(card =>
-        card.querySelector(".-front .icon").getAttribute("src")
-      )
-    )
-  ];
-
-  if (unique.length == 1) {
-    store.score++;
-    console.log(store.score);
-    $activeCards.forEach(card => {
-      card.classList.add("-score");
-      card.classList.remove("-active");
-    });
-  } else {
-    turnCardsDown();
-  }
-};
-
-const turnCardsDown = () => {
-  setTimeout(() => {
-    const $activeMemoryCards = document.querySelectorAll(
-      ".memory-card.-active"
+const cardLogic = (function() {
+  const checkPair = () => {
+    const $activeCards = Array.from(
+      document.querySelectorAll(".memory-card.-active")
     );
 
-    $activeMemoryCards.forEach($memoryCard => {
-      $memoryCard.classList.remove("-active");
-    });
+    const unique = [
+      ...new Set(
+        $activeCards.map(card =>
+          card.querySelector(".-front .icon").getAttribute("src")
+        )
+      )
+    ];
 
-    qtdActiveMemoryCard = 0;
-  }, 2000);
-};
+    if (unique.length == 1) {
+      store.score++;
+      console.log(store.score);
+      $activeCards.forEach(card => {
+        card.classList.add("-score");
+        card.classList.remove("-active");
+      });
+    } else {
+      turnCardsDown();
+    }
+  };
 
-const activeMemoryCard = $component => {
-  if (qtdActiveMemoryCard < 2) {
-    $component.classList.add("-active");
-  }
-};
+  const turnCardsDown = () => {
+    setTimeout(() => {
+      const $activeMemoryCards = document.querySelectorAll(
+        ".memory-card.-active"
+      );
 
-const checkSure = () => {
-  if (qtdActiveMemoryCard === 1) {
-    checkPair();
-  }
-};
+      $activeMemoryCards.forEach($memoryCard => {
+        $memoryCard.classList.remove("-active");
+      });
+
+      qtdActiveMemoryCard = 0;
+    }, 2000);
+  };
+
+  const activeMemoryCard = $component => {
+    if (qtdActiveMemoryCard < 2) {
+      $component.classList.add("-active");
+    }
+  };
+
+  const checkSure = () => {
+    if (qtdActiveMemoryCard === 1) {
+      checkPair();
+    }
+  };
+
+  return {
+    handleClick: $component => {
+      if ($component.classList.contains("-active")) {
+        return;
+      }
+
+      activeMemoryCard($component);
+      checkSure();
+    }
+  };
+})();
