@@ -61,7 +61,7 @@ const memoryCard = (function() {
     $head.insertBefore($style, null);
 
     return ({ src, alt }) => `
-    <div class="memory-card" onClick="handleClick(this)">
+    <div class="memory-card" onClick="memoryCard.handleClick(this)">
       <article class="card -front">
         <img
           class='icon'
@@ -78,6 +78,15 @@ const memoryCard = (function() {
       </article>
     </div>
     `;
+  };
+
+  const handleClick = $component => {
+    if ($component.classList.contains("-active")) {
+      return;
+    }
+
+    activeMemoryCard($component);
+    checkSure();
   };
 
   const checkPair = () => {
@@ -131,15 +140,8 @@ const memoryCard = (function() {
     }
   };
 
-  /*return {
-    handleClick: $component => {
-      if ($component.classList.contains("-active")) {
-        return;
-      }
-
-      activeMemoryCard($component);
-      checkSure();
-    }
-  };*/
-  return memoryCard;
+  return {
+    new: memoryCard,
+    handleClick: handleClick
+  };
 })();
