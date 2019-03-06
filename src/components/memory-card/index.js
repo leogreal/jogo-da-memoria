@@ -1,8 +1,9 @@
-const memoryCard = () => {
-  const $head = document.querySelector("head");
-  const $style = document.createElement("style");
+const memoryCard = (function() {
+  const memoryCard = () => {
+    const $head = document.querySelector("head");
+    const $style = document.createElement("style");
 
-  $style.textContent = `
+    $style.textContent = `
     .memory-card {
       width: 155px;
       height: 155px;
@@ -55,12 +56,12 @@ const memoryCard = () => {
       position: absolute;
       transform: translateY(-12px);
     }
-  `;
+    `;
 
-  $head.insertBefore($style, null);
+    $head.insertBefore($style, null);
 
-  return ({ src, alt }) => `
-    <div class="memory-card" onClick="cardLogic.handleClick(this)">
+    return ({ src, alt }) => `
+    <div class="memory-card" onClick="handleClick(this)">
       <article class="card -front">
         <img
           class='icon'
@@ -76,10 +77,9 @@ const memoryCard = () => {
         />
       </article>
     </div>
-  `;
-};
+    `;
+  };
 
-const cardLogic = (function() {
   const checkPair = () => {
     const $activeCards = Array.from(
       document.querySelectorAll(".memory-card.-active")
@@ -131,7 +131,7 @@ const cardLogic = (function() {
     }
   };
 
-  return {
+  /*return {
     handleClick: $component => {
       if ($component.classList.contains("-active")) {
         return;
@@ -140,5 +140,6 @@ const cardLogic = (function() {
       activeMemoryCard($component);
       checkSure();
     }
-  };
+  };*/
+  return memoryCard;
 })();
