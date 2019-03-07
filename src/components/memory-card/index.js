@@ -1,5 +1,7 @@
 const memoryCard = (function() {
-  const create = () => {
+  const module = {};
+
+  module.create = () => {
     const $head = document.querySelector("head");
     const $style = document.createElement("style");
 
@@ -80,16 +82,16 @@ const memoryCard = (function() {
     `;
   };
 
-  const handleClick = $component => {
+  module.handleClick = $component => {
     if ($component.classList.contains("-active")) {
       return;
     }
 
-    activeMemoryCard($component);
-    checkSure();
+    module.activeMemoryCard($component);
+    module.checkSure();
   };
 
-  const checkPair = () => {
+  module.checkPair = () => {
     const $activeCards = Array.from(
       document.querySelectorAll(".memory-card.-active")
     );
@@ -110,11 +112,11 @@ const memoryCard = (function() {
         card.classList.remove("-active");
       });
     } else {
-      turnCardsDown();
+      module.turnCardsDown();
     }
   };
 
-  const turnCardsDown = () => {
+  module.turnCardsDown = () => {
     setTimeout(() => {
       const $activeMemoryCards = document.querySelectorAll(
         ".memory-card.-active"
@@ -128,20 +130,20 @@ const memoryCard = (function() {
     }, 2000);
   };
 
-  const activeMemoryCard = $component => {
+  module.activeMemoryCard = $component => {
     if (store.qtdActiveMemoryCard < 2) {
       $component.classList.add("-active");
     }
   };
 
-  const checkSure = () => {
+  module.checkSure = () => {
     if (store.qtdActiveMemoryCard === 1) {
-      checkPair();
+      module.checkPair();
     }
   };
 
   return {
-    create,
-    handleClick
+    create: module.create,
+    handleClick: module.handleClick
   };
 })();
