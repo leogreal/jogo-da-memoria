@@ -32,7 +32,11 @@ const pointBar = (function() {
     `;
   };
 
+  module.updateNumber = newNumber =>
+    (document.querySelector(".point-bar > .number").textContent = newNumber);
+
   return {
-    create: module.create
+    create: module.create,
+    updateNumber: module.updateNumber
   };
 })();

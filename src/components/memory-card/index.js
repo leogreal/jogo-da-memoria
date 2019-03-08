@@ -106,7 +106,7 @@ const memoryCard = (function() {
 
     if (unique.length == 1) {
       store.score++;
-      console.log(store.score);
+      pointBar.updateNumber(store.score);
       $activeCards.forEach(card => {
         card.classList.add("-score");
         card.classList.remove("-active");
